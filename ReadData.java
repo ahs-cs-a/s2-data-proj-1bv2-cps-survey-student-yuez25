@@ -66,8 +66,8 @@ public class ReadData{
             sumX+= Math.pow(xy[row][0] - mean[0],2);
             sumY+= Math.pow(xy[row][1] - mean[1],2);
         }
-        out[0] = sumX/(xy.length -1);
-        out[1] = sumY/(xy.length -1);
+        out[0] = Math.sqrt(sumX/(xy.length -1));
+        out[1] = Math.sqrt(sumY/(xy.length -1));
         return out; //sample variance!
     }
     
@@ -121,7 +121,7 @@ public class ReadData{
         double[][] xyStd = standardUnits(xy);
         double correlation = correlation(xyStd);
         double[] xyStandDev = stdDeviation(xyStd);
-        double slope = (correlation * xyStandDev[1]) / xyStandDev[0];
+        double slope = correlation * xyStandDev[1] / xyStandDev[0];
         double[] means = mean(xy);
         double intercept = means[1] - slope * means[0];
         System.out.println("Correlation: " + correlation);
